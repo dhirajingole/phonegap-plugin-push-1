@@ -27,6 +27,7 @@ public class PushHandlerActivity extends Activity implements PushConstants {
         notificationManager.cancel(GCMIntentService.getAppName(this), notId);
         super.onCreate(savedInstanceState);
         Log.v(LOG_TAG, "onCreate");
+        moveTaskToBack(true);//ELLITE
         String callback = getIntent().getExtras().getString("callback");
         Log.d(LOG_TAG, "callback = " + callback);
         boolean foreground = getIntent().getExtras().getBoolean("foreground", true);
