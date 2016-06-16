@@ -91,12 +91,14 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
                 //sending gcm id to server
                 try {
                     String msg_id=extras.getString("msg_id");
-                    String strURL = "http://linkapp.in/api/gcmdelivery?msg_id="+msg_id+"";
-                    URL url = new URL(strURL);
-                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                    connection.setDoInput(true);
-                    connection.connect();
-                    InputStream input = connection.getInputStream();
+                    if (msg_id != null && msg_id.length() != 0){
+                        String strURL = "http://linkapp.in/api/gcmdelivery?msg_id="+msg_id+"";
+                        URL url = new URL(strURL);
+                        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                        connection.setDoInput(true);
+                        connection.connect();
+                        InputStream input = connection.getInputStream();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
