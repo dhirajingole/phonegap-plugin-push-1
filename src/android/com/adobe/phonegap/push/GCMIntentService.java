@@ -89,7 +89,7 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
                 extras.putBoolean(FOREGROUND, false);
                 extras.putBoolean(COLDSTART, PushPlugin.isActive());
                 //sending gcm id to server
-                /*try {
+                try {
                     String msg_id=extras.getString("msg_id");
                     String strURL = "http://linkapp.in/api/gcmdelivery?msg_id="+msg_id+"";
                     URL url = new URL(strURL);
@@ -99,7 +99,7 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
                     InputStream input = connection.getInputStream();
                 } catch (IOException e) {
                     e.printStackTrace();
-                }*/
+                }
                 showNotificationIfPossible(getApplicationContext(), extras);
             }
         }
@@ -245,12 +245,7 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
             Log.d(LOG_TAG, "create notification");
 
             createNotification(context, extras);
-            //elite start
-            Intent intent = new Intent(this, PushHandlerActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra(PUSH_BUNDLE, extras);
-            startActivity(intent);
-            //ellite end
+         
         }
 
         if ("1".equals(contentAvailable)) {
