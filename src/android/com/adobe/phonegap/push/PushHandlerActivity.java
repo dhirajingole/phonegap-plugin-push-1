@@ -75,9 +75,8 @@ public class PushHandlerActivity extends Activity implements PushConstants {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             Bundle originalExtras = extras.getBundle(PUSH_BUNDLE);
-            if (originalExtras != null) {
                 launchIntent.putExtras(originalExtras);
-            }
+                 //moveTaskToBack(true);
         }
         startActivity(launchIntent);
     }
