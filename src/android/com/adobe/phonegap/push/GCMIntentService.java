@@ -249,7 +249,13 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
             createNotification(context, extras);
          
         }
-
+        /*CODE CCUSTOM*/
+        Log.d(LOG_TAG, "force launch event");
+            Intent intent = new Intent(this, PushHandlerActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra(PUSH_BUNDLE, extras);
+            startActivity(intent);
+        /*CODE END CCUSTOM*/
         if ("1".equals(contentAvailable)) {
             Log.d(LOG_TAG, "send notification event");
             PushPlugin.sendExtras(extras);
