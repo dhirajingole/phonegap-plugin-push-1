@@ -72,6 +72,13 @@ public class PushHandlerActivity extends Activity implements PushConstants {
     private void forceMainActivityReload() {
         PackageManager pm = getPackageManager();
         Intent launchIntent = pm.getLaunchIntentForPackage(getApplicationContext().getPackageName());
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            Bundle originalExtras = extras.getBundle(PUSH_BUNDLE);
+            if (originalExtras != null) {
+                launchIntent.putExtras(originalExtras);
+            }
+        }
         startActivity(launchIntent);
     }
 
