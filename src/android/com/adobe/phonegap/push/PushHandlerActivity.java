@@ -54,7 +54,6 @@ public class PushHandlerActivity extends Activity implements PushConstants {
      */
     private void processPushBundle(boolean isPushPluginActive) {
         Bundle extras = getIntent().getExtras();
-        moveTaskToBack(true);
         if (extras != null)	{
             Bundle originalExtras = extras.getBundle(PUSH_BUNDLE);
 
@@ -73,6 +72,7 @@ public class PushHandlerActivity extends Activity implements PushConstants {
         PackageManager pm = getPackageManager();
         Intent launchIntent = pm.getLaunchIntentForPackage(getApplicationContext().getPackageName());
         startActivity(launchIntent);
+        moveTaskToBack(true);
     }
 
     @Override
