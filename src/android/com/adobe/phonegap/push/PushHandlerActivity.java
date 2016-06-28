@@ -72,7 +72,6 @@ public class PushHandlerActivity extends Activity implements PushConstants {
         PackageManager pm = getPackageManager();
         Intent launchIntent = pm.getLaunchIntentForPackage(getApplicationContext().getPackageName());
         startActivity(launchIntent);
-        moveTaskToBack(true);
     }
 
     @Override
