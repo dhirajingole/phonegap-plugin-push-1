@@ -44,6 +44,7 @@ public class PushHandlerActivity extends Activity implements PushConstants {
             Log.d(LOG_TAG, "forceMainActivityReload");
             forceMainActivityReload();
         } else {
+            moveTaskToBack(true);
             Log.d(LOG_TAG, "don't want main activity");
         }
     }
@@ -72,7 +73,6 @@ public class PushHandlerActivity extends Activity implements PushConstants {
     private void forceMainActivityReload() {
         PackageManager pm = getPackageManager();
         Intent launchIntent = pm.getLaunchIntentForPackage(getApplicationContext().getPackageName());
-        moveTaskToBack(true);
         startActivity(launchIntent);
     }
 
