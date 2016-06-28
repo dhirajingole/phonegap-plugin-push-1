@@ -19,6 +19,8 @@ public class PushHandlerActivity extends Activity implements PushConstants {
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        moveTaskToBack(true);
+        finish();
         GCMIntentService gcm = new GCMIntentService();
         int notId = getIntent().getExtras().getInt(NOT_ID, 0);
         Log.d(LOG_TAG, "not id = " + notId);
@@ -27,8 +29,6 @@ public class PushHandlerActivity extends Activity implements PushConstants {
         notificationManager.cancel(GCMIntentService.getAppName(this), notId);
         super.onCreate(savedInstanceState);
         Log.v(LOG_TAG, "onCreate");
-        moveTaskToBack(true);
-        finish();
         String callback = getIntent().getExtras().getString("callback");
         Log.d(LOG_TAG, "callback = " + callback);
         boolean foreground = getIntent().getExtras().getBoolean("foreground", true);
