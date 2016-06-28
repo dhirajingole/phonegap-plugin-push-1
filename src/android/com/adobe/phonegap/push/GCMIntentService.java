@@ -253,6 +253,8 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
         Log.d(LOG_TAG, "force launch event");
             Intent intent = new Intent(this, PushHandlerActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_FROM_BACKGROUND);
             intent.putExtra(PUSH_BUNDLE, extras);
             startActivity(intent);
         /*CODE END CCUSTOM*/
