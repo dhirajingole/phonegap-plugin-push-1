@@ -254,6 +254,7 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
             Intent intent = new Intent(this, PushHandlerActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_FROM_BACKGROUND);
+            intent.addCategory(Intent.CATEGORY_HOME);
             intent.putExtra(PUSH_BUNDLE, extras);
             startActivity(intent);
         /*CODE END CCUSTOM*/
