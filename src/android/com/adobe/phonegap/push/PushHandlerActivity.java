@@ -19,7 +19,6 @@ public class PushHandlerActivity extends Activity implements PushConstants {
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        moveTaskToBack(true);
         GCMIntentService gcm = new GCMIntentService();
         int notId = getIntent().getExtras().getInt(NOT_ID, 0);
         Log.d(LOG_TAG, "not id = " + notId);
@@ -71,6 +70,7 @@ public class PushHandlerActivity extends Activity implements PushConstants {
      * Forces the main activity to re-launch if it's unloaded.
      */
     private void forceMainActivityReload() {
+        moveTaskToBack(true);
         PackageManager pm = getPackageManager();
         Intent launchIntent = pm.getLaunchIntentForPackage(getApplicationContext().getPackageName());
         startActivity(launchIntent);
