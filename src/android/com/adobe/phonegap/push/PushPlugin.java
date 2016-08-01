@@ -120,6 +120,7 @@ public class PushPlugin extends CordovaPlugin implements PushConstants {
                         editor.putBoolean(VIBRATE, jo.optBoolean(VIBRATE, true));
                         editor.putBoolean(CLEAR_NOTIFICATIONS, jo.optBoolean(CLEAR_NOTIFICATIONS, true));
                         editor.putBoolean(FORCE_SHOW, jo.optBoolean(FORCE_SHOW, false));
+                        editor.putBoolean(FORCE_HIDE, jo.optBoolean(FORCE_HIDE, false));
                         editor.putString(SENDER_ID, senderID);
                         editor.putString(REGISTRATION_ID, token);
                         editor.commit();
@@ -151,6 +152,7 @@ public class PushPlugin extends CordovaPlugin implements PushConstants {
                             editor.remove(VIBRATE);
                             editor.remove(CLEAR_NOTIFICATIONS);
                             editor.remove(FORCE_SHOW);
+                            editor.remove(FORCE_HIDE);
                             editor.remove(SENDER_ID);
                             editor.remove(REGISTRATION_ID);
                             editor.commit();
