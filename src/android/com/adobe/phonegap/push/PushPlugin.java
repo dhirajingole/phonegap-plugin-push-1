@@ -128,7 +128,7 @@ public class PushPlugin extends CordovaPlugin implements PushConstants {
                     if (gCachedExtras != null) {
                         Log.v(LOG_TAG, "sending cached extras");
                         sendExtras(gCachedExtras);
-                        gCachedExtras = null;
+                        //gCachedExtras = null;
                     }
                 }
             });
