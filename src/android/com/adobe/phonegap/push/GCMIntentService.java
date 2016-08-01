@@ -65,7 +65,7 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
 
             SharedPreferences prefs = getApplicationContext().getSharedPreferences(PushPlugin.COM_ADOBE_PHONEGAP_PUSH, Context.MODE_PRIVATE);
             boolean forceShow = prefs.getBoolean(FORCE_SHOW, false);
-
+            boolean forceHide = prefs.getBoolean(FORCE_HIDE, false);
             extras = normalizeExtras(extras);
 
             // if we are in the foreground and forceShow is `false` only send data
@@ -80,8 +80,15 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
                 Log.d(LOG_TAG, "foreground force");
                 extras.putBoolean(FOREGROUND, true);
                 extras.putBoolean(COLDSTART, false);
-
-                showNotificationIfPossible(getApplicationContext(), extras);
+                if(forceHide){
+                    showNotificationIfPossible(getApplicationContext(), extras);
+                }else{
+                 try{
+                    PushPlugin.sendExtras(extras);
+                   }catch (Exception e) {
+                       Log.d(LOG_TAG, "Custom Error PushPlugin forceShow (DJ)");
+                   }
+                }
             }
             // if we are not in the foreground always send notification if the data has at least a message or title
             else {
@@ -112,7 +119,16 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
                         e.printStackTrace();
                     }
                 }
-                showNotificationIfPossible(getApplicationContext(), extras);
+                if(forceHide){
+                    showNotificationIfPossible(getApplicationContext(), extras);
+                }else{
+                 try{
+                    PushPlugin.sendExtras(extras);
+                   }catch (Exception e) {
+                       Log.d(LOG_TAG, "Custom Error PushPlugin forceShow (DJ)");
+                   }
+                }
+                
             }
         }
     }
